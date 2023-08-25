@@ -15,7 +15,7 @@ const sendToken = (user, statusCode, res) => {
         user,
         token,
         sameSite: "None",
-        Secure
+        secure: true
     })
 }
 
