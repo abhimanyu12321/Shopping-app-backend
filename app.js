@@ -18,7 +18,7 @@ app.use(fileUpload());
 
 //Routes imports
 app.use("*", cors({
-    origin: true,
+    origin: ['http://localhost:3000', "https://shopping-app-backend-eight.vercel.app"],
     credentials: true,
 
 }))
