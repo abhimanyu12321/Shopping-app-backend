@@ -9,18 +9,14 @@ const sendToken = (user, statusCode, res) => {
         ),
         httpOnly: true,
         sameSite: "none",
-<<<<<<< HEAD
-        secure: true
-=======
-        secure:true
->>>>>>> ff661539e43b5ae24c4190483377d71b57dbb3d4
+        secure: true,
     }
 
     res.status(statusCode).cookie('token', token, option).json({
         success: true,
         user,
         token,
-      
+
     })
 }
 
