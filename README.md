@@ -102,7 +102,3 @@ Order = {
  createdAt : date
  
 }
-```![diagram-export-12-30-2023-4_06_48-PM](https://github.com/abhimanyu12321/Shopping-app-backend/assets/122272179/f95d3fd1-1fa1-47c1-918f-12000f7d1959)
-
-
-
