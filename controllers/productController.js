@@ -7,14 +7,7 @@ const cloudinary = require("cloudinary");
 
 // create product Admin route
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
-
-    let images = [];
-
-    if (typeof req.body.images === "string") {
-        images.push(req.body.images);
-    } else {
-        images = req.body.images;
-    }
+    let images = req.body.images.split("    ")
 
     const imagesLinks = [];
 
@@ -92,19 +85,8 @@ exports.updateProduct = catchAsyncErrors(async (req, res) => {
 
 
     // Images Start Here
-    let images = [];
-
-    if (typeof req.body.images === "string") {
-        images.push(req.body.images);
-    } else {
-        images = req.body.images;
-    }
-
-    if (images !== undefined) {
-        // Deleting Images From Cloudinary
-        for (let i = 0; i < product.images.length; i++) {
-            await cloudinary.v2.uploader.destroy(product.images[i].public_id);
-        }
+    let images = req.body.images.split("    ")
+    if (images.length && images.join('') !== '') {
 
         const imagesLinks = [];
 
@@ -118,8 +100,17 @@ exports.updateProduct = catchAsyncErrors(async (req, res) => {
                 url: result.secure_url,
             });
         }
-
-        req.body.images = imagesLinks;
+        let productImages = product.images
+        for (let i = 0; i < productImages.length; i++) {
+            console.log(productImages[i])
+            if (productImages[i].public_id && productImages[i].url) {
+                imagesLinks.push({
+                    public_id: productImages[i].public_id,
+                    url: productImages[i].url,
+                });
+            }
+        }
+        req.body.images = imagesLinks
     }
 
 
